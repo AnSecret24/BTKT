@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký tài khoản</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .register-box {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            background-color: #0d6efd;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-box">
+
+    <div class="header-title">
+        <h3>Form Đăng Ký Tài Khoản – Shop.vn</h3>
+    </div>
+
+    <!-- Thông báo thành công -->
+    <div th:if="${success}" class="alert alert-success">
+        <span th:text="${success}"></span>
+    </div>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+
+        <!-- Họ và tên -->
+        <div class="mb-3">
+            <label class="form-label">Họ và tên (*)</label>
+            <input type="text" class="form-control" th:field="*{fullName}">
+            <div class="text-danger" th:errors="*{fullName}"></div>
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+            <label class="form-label">Tên đăng nhập (*)</label>
+            <input type="text" class="form-control" th:field="*{username}">
+            <div class="text-danger" th:errors="*{username}"></div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label class="form-label">Email (*)</label>
+            <input type="email" class="form-control" th:field="*{email}">
+            <div class="text-danger" th:errors="*{email}"></div>
+        </div>
+
+        <!-- SĐT -->
+        <div class="mb-3">
+            <label class="form-label">Số điện thoại (*)</label>
+            <input type="text" class="form-control" th:field="*{phone}">
+            <div class="text-danger" th:errors="*{phone}"></div>
+        </div>
+
+        <!-- Mật khẩu -->
+        <div class="mb-3">
+            <label class="form-label">Mật khẩu (*)</label>
+            <input type="password" class="form-control" th:field="*{password}">
+            <div class="text-danger" th:errors="*{password}"></div>
+        </div>
+
+        <!-- Xác nhận mật khẩu -->
+        <div class="mb-3">
+            <label class="form-label">Xác nhận mật khẩu (*)</label>
+            <input type="password" name="confirmPassword" class="form-control">
+        </div>
+
+        <!-- Ngày sinh -->
+        <div class="mb-3">
+            <label class="form-label">Ngày sinh</label>
+            <input type="date" class="form-control" th:field="*{birthDate}">
+        </div>
+
+        <!-- Giới tính -->
+        <div class="mb-3">
+            <label class="form-label">Giới tính</label><br>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                       th:field="*{gender}" value="Nam">
+                <label class="form-check-label">Nam</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                       th:field="*{gender}" value="Nữ">
+                <label class="form-check-label">Nữ</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                       th:field="*{gender}" value="Khác">
+                <label class="form-check-label">Không muốn tiết lộ</label>
+            </div>
+        </div>
+
+        <!-- Mã giới thiệu -->
+        <div class="mb-3">
+            <label class="form-label">Mã giới thiệu</label>
+            <input type="text" class="form-control" th:field="*{referralCode}">
+            <div class="text-danger" th:errors="*{referralCode}"></div>
+        </div>
+
+        <!-- Đồng ý điều khoản -->
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input"
+                   th:field="*{agreeTerms}">
+            <label class="form-check-label">
+                Tôi đồng ý với Điều khoản sử dụng (*)
+            </label>
+            <div class="text-danger" th:errors="*{agreeTerms}"></div>
+        </div>
+
+        <!-- Button -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">
+                Đăng ký
+            </button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
