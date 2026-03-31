@@ -1,0 +1,16 @@
+[
+  {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "role": "user",
+    "expectSuccess": true,
+    "description": "Đăng nhập thành công"
+  },
+  {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "role": "user",
+    "expectSuccess": false,
+    "description": "User bị khóa"
+  }
+]
